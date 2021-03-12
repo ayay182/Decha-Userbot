@@ -229,10 +229,10 @@ async def upstream(event):
 
 CMD_HELP.update({
     'update':
-    ".update"
+    "`.update`"
     "\nUsage: Untuk Melihat Pembaruan Terbaru Decha-Userbot."
-    "\n\n.update now"
+    "\n\n`.update now`"
     "\nUsage: Memperbarui Decha-Userbot."
-    "\n\n.update deploy"
+    "\n\n`.update deploy`"
     "\nUsage: Memperbarui Decha-Userbot Dengan Cara Deploy Ulang."
 })
