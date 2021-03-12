@@ -1,0 +1,36 @@
+#!/usr/bin/env dash
+# shellcheck source=/dev/null
+#
+# Telegram command container
+
+TELEGRAM=$SEMAPHORE_PROJECT_DIR/init/telegramapi
+export TELEGRAM
+# Caster configurations
+MAINGROUP_ID="-523902309"
+
+# sendcast to group
+tg_sendinfo() {
+    "${TELEGRAM}" -c ${MAINGROUP_ID} -H \
+    "$(
+		for POST in "${@}"; do
+			echo "${POST}"
+		done
+    )" \
+    -t $BOT_API_KEY
+}
+
+kickstart_pub() {
+  if [ ! -z "$PULL_REQUEST_NUMBER" ]; then
+     tg_sendinfo "I am starting build" \
+     "PR: <code>${PULL_REQUEST_NUMBER}</code>" \
+     "Commit Point <code>${COMMIT_POINT}</code>" \
+     " " \
+     "<b>Github Link: </b> https://github.com/ayay182/Decha-Userbot/commit/${COMMIT_HASH}"
+  else
+    tg_sendinfo "I am starting build" \
+    "Branch <code>${PARSE_BRANCH}</code>" \
+    "Commit Point <code>${COMMIT_POINT}</code>" \
+    " " \
+    "<b>Github Link: </b> https://github.com/ayay182/Decha-Userbot/commit/${COMMIT_HASH}"  
+fi
+}
